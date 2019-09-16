@@ -1,0 +1,17 @@
+syntax = "proto3";
+package stream;
+
+message ClientStream{
+    bytes data = 1;
+}
+message HeartbeatRequest{
+    string greeting = 1;
+}
+message Response{
+    string status = 1; // OK or Err
+}
+
+service StreamService {
+    rpc OpenStream(stream ClientStream) returns (Response);
+    rpc Heartbeat(HeartbeatRequest) returns (Response);
+}
